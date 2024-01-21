@@ -65,10 +65,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to staking app!</h1>
+        <h1 className={styles.title}>stake your Leopard stake here!</h1>
 
         <p className={styles.description}>
-          Stake certain amount and get reward tokens back!
+          Stake your Leopard Stake and get rewarded with KEEN!
         </p>
 
         <div className={styles.connect}>
