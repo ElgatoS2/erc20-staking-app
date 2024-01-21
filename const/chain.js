@@ -1,3 +1,5 @@
+import { Chain } from "@thirdweb-dev/chains";
+
 const CustomChain = {
   chain: "Leopardkeen",
   name: "Leopardkeen",
