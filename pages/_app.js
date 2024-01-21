@@ -2,6 +2,8 @@ import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
 import CustomChain from "../const/chain";
 
+const activeChain = "CustomChain";
+
 function MyApp({ Component, pageProps }) {
   return (
     <ThirdwebProvider
