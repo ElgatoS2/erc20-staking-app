@@ -2,12 +2,12 @@ import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
 
 // This is the chain your dApp will work on.
-const activeChain = "mumbai";
+const activeChain = "CustomChain";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ThirdwebProvider
-      activeChain={activeChain}
+      activeChain={CustomChain}
       clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
     >
       <Component {...pageProps} />
