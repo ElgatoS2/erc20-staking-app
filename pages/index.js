@@ -68,12 +68,12 @@ export default function Home() {
 
         <div className={styles.tokenInfoContainer}>
           <div className={styles.tokenInfo}>
-            <h2>Stake Token Balance</h2>
+            <h2>$POPCATr Balance</h2>
             <p>{stakingTokenBalance?.displayValue}</p>
           </div>
 
           <div className={styles.tokenInfo}>
-            <h2>Reward Token Balance</h2>
+            <h2>$WBROCK Balance</h2>
             <p>{rewardTokenBalance?.displayValue}</p>
           </div>
 
@@ -93,7 +93,7 @@ export default function Home() {
         </div>
 
         <p className={styles.description}>
-          Stake your Leopard Stake and get rewarded with KEEN!
+          Stake your PopCatRock and earn $WBROCK!
         </p>
 
         <div className={styles.connect}>
