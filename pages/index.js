@@ -66,34 +66,8 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Stake your Leopard Stake here!</h1>
 
-        <div className={styles.tokenInfoContainer}>
-          <div className={styles.tokenInfo}>
-            <h2>$POPCATr Balance</h2>
-            <p>{stakingTokenBalance?.displayValue}</p>
-          </div>
-
-          <div className={styles.tokenInfo}>
-            <h2>$WBROCK Balance</h2>
-            <p>{rewardTokenBalance?.displayValue}</p>
-          </div>
-
-          <div className={styles.tokenInfo}>
-            <h2>Staked Amount</h2>
-            <p>
-              {stakeInfo && ethers.utils.formatEther(stakeInfo[0].toString())}
-            </p>
-          </div>
-
-          <div className={styles.tokenInfo}>
-            <h2>Current Reward</h2>
-            <p>
-              {stakeInfo && ethers.utils.formatEther(stakeInfo[1].toString())}
-            </p>
-          </div>
-        </div>
-
         <p className={styles.description}>
-          Stake your PopCatRock and earn $WBROCK!
+          Stake your Leopard Stake and get rewarded with KEEN!
         </p>
 
         <div className={styles.connect}>
@@ -101,55 +75,86 @@ export default function Home() {
         </div>
 
         <div className={styles.stakeContainer}>
-          <input
-            className={styles.textbox}
-            type="number"
-            value={amountToStake}
-            onChange={(e) => setAmountToStake(e.target.value)}
-          />
+          <div className={styles.inputContainer}>
+            <input
+              className={styles.textbox}
+              type="number"
+              value={amountToStake}
+              onChange={(e) => setAmountToStake(e.target.value)}
+            />
+            <span className={styles.unit}>LEO</span>
+          </div>
 
-          <Web3Button
-            className={styles.button}
-            contractAddress={stakingContractAddress}
-            action={async (contract) => {
-              await stakingToken.setAllowance(
-                stakingContractAddress,
-                amountToStake
-              );
-              await contract.call(
-                "stake",
-                [ethers.utils.parseEther(amountToStake)]
-              );
-              alert("Tokens staked successfully!");
-            }}
-          >
-            Stake
-          </Web3Button>
+          <div className={styles.buttonContainer}>
+            <Web3Button
+              className={styles.button}
+              contractAddress={stakingContractAddress}
+              action={async (contract) => {
+                await stakingToken.setAllowance(
+                  stakingContractAddress,
+                  amountToStake
+                );
+                await contract.call(
+                  "stake",
+                  [ethers.utils.parseEther(amountToStake)]
+                );
+                alert("Tokens staked successfully!");
+              }}
+            >
+              Stake
+            </Web3Button>
 
-          <Web3Button
-            className={styles.button}
-            contractAddress={stakingContractAddress}
-            action={async (contract) => {
-              await contract.call(
-                "withdraw",
-                [ethers.utils.parseEther(amountToStake)]
-              );
-              alert("Tokens unstaked successfully!");
-            }}
-          >
-            Unstake
-          </Web3Button>
+            <Web3Button
+              className={styles.button}
+              contractAddress={stakingContractAddress}
+              action={async (contract) => {
+                await contract.call(
+                  "withdraw",
+                  [ethers.utils.parseEther(amountToStake)]
+                );
+                alert("Tokens unstaked successfully!");
+              }}
+            >
+              Unstake
+            </Web3Button>
 
-          <Web3Button
-            className={styles.button}
-            contractAddress={stakingContractAddress}
-            action={async (contract) => {
-              await contract.call("claimRewards", []);
-              alert("Rewards claimed successfully!");
-            }}
-          >
-            Claim rewards
-          </Web3Button>
+            <Web3Button
+              className={styles.button}
+              contractAddress={stakingContractAddress}
+              action={async (contract) => {
+                await contract.call("claimRewards", []);
+                alert("Rewards claimed successfully!");
+              }}
+            >
+              Claim rewards
+            </Web3Button>
+          </div>
+        </div>
+
+        <div className={styles.grid}>
+          <div className={styles.card}>
+            <h2>Stake Token Balance</h2>
+            <p>{stakingTokenBalance?.displayValue}</p>
+          </div>
+
+          <div className={styles.card}>
+            <h2>Reward Token Balance</h2>
+            <p>{rewardTokenBalance?.displayValue}</p>
+          </div>
+
+          <div className={styles.card}>
+            <h2>Staked Amount</h2>
+            <p>
+              {stakeInfo && ethers.utils.formatEther(stakeInfo[0].toString())}
+            </p>
+          </div>
+
+          <div className={styles.card}>
+            <h2>Current Reward</h2>
+            <p>
+              {stakeInfo && ethers.utils.formatEther(stakeInfo[1].toString())}
+            </p>
+          </div>
         </div>
       </main>
     </div>
