@@ -1,18 +1,18 @@
 import { Chain } from "@thirdweb-dev/chains";
 
 const CustomChain = {
-  chain: "Leopardkeen",
-  name: "Leopardkeen",
-  chainId: 1063590932,
-  rpc: ["https://leopardkeen-rpc.eu-north-2.gateway.fm"],
+  chain: "Bitrock",
+  name: "Bitrock",
+  chainId: 7171,
+  rpc: ["https://connect.bit-rock.io"],
   nativeCurrency: {
-    name: "Ethereum",
-    symbol: "ETH",
+    name: "Bitrock",
+    symbol: "BROCK",
     decimals: 18,
   },
   shortName: "custom",
   testnet: false,
-  slug: "leopardkeen",
+  slug: "Bitrock",
 };
 
 export default CustomChain;
