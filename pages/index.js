@@ -3,6 +3,7 @@ import {
   useAddress,
   useContract,
   useContractRead,
+  useContractWrite,
   useTokenBalance,
   Web3Button,
 } from "@thirdweb-dev/react";
@@ -64,10 +65,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>Stake your Leopard Stake here!</h1>
+        <h1 className={styles.title}>Welcome to staking app!</h1>
 
         <p className={styles.description}>
-          Stake your Leopard Stake and get rewarded with KEEN!
+          Stake certain amount and get reward tokens back!
         </p>
 
         <div className={styles.connect}>
@@ -75,86 +76,81 @@ export default function Home() {
         </div>
 
         <div className={styles.stakeContainer}>
-          <div className={styles.inputContainer}>
-            <input
-              className={styles.textbox}
-              type="number"
-              value={amountToStake}
-              onChange={(e) => setAmountToStake(e.target.value)}
-            />
-            <span className={styles.unit}>LEO</span>
-          </div>
+          <input
+            className={styles.textbox}
+            type="number"
+            value={amountToStake}
+            onChange={(e) => setAmountToStake(e.target.value)}
+          />
 
-          <div className={styles.buttonContainer}>
-            <Web3Button
-              className={styles.button}
-              contractAddress={stakingContractAddress}
-              action={async (contract) => {
-                await stakingToken.setAllowance(
-                  stakingContractAddress,
-                  amountToStake
-                );
-                await contract.call(
-                  "stake",
-                  [ethers.utils.parseEther(amountToStake)]
-                );
-                alert("Tokens staked successfully!");
-              }}
-            >
-              Stake
-            </Web3Button>
+          <Web3Button
+            className={styles.button}
+            contractAddress={stakingContractAddress}
+            action={async (contract) => {
+              await stakingToken.setAllowance(
+                stakingContractAddress,
+                amountToStake
+              );
+              await contract.call(
+                "stake",
+                [ethers.utils.parseEther(amountToStake)]
+              );
+              alert("Tokens staked successfully!");
+            }}
+          >
+            Stake!
+          </Web3Button>
 
-            <Web3Button
-              className={styles.button}
-              contractAddress={stakingContractAddress}
-              action={async (contract) => {
-                await contract.call(
-                  "withdraw",
-                  [ethers.utils.parseEther(amountToStake)]
-                );
-                alert("Tokens unstaked successfully!");
-              }}
-            >
-              Unstake
-            </Web3Button>
+          <Web3Button
+            className={styles.button}
+            contractAddress={stakingContractAddress}
+            action={async (contract) => {
+              await contract.call(
+                "withdraw",
+                [ethers.utils.parseEther(amountToStake)]
+              );
+              alert("Tokens unstaked successfully!");
+            }}
+          >
+            Unstake!
+          </Web3Button>
 
-            <Web3Button
-              className={styles.button}
-              contractAddress={stakingContractAddress}
-              action={async (contract) => {
-                await contract.call("claimRewards", []);
-                alert("Rewards claimed successfully!");
-              }}
-            >
-              Claim rewards
-            </Web3Button>
-          </div>
+          <Web3Button
+            className={styles.button}
+            contractAddress={stakingContractAddress}
+            action={async (contract) => {
+              await contract.call("claimRewards", []);
+              alert("Rewards claimed successfully!");
+            }}
+          >
+            Claim rewards!
+          </Web3Button>
         </div>
 
         <div className={styles.grid}>
-          <div className={styles.card}>
-            <h2>Stake Token Balance</h2>
+          <a className={styles.card}>
+            <h2>Stake token balance</h2>
             <p>{stakingTokenBalance?.displayValue}</p>
-          </div>
+          </a>
 
-          <div className={styles.card}>
-            <h2>Reward Token Balance</h2>
+          <a className={styles.card}>
+            <h2>Reward token balance</h2>
             <p>{rewardTokenBalance?.displayValue}</p>
-          </div>
+          </a>
 
-          <div className={styles.card}>
-            <h2>Staked Amount</h2>
+          <a className={styles.card}>
+            <h2>Staked amount</h2>
             <p>
               {stakeInfo && ethers.utils.formatEther(stakeInfo[0].toString())}
             </p>
-          </div>
+          </a>
 
-          <div className={styles.card}>
-            <h2>Current Reward</h2>
+          <a className={styles.card}>
+            <h2>Current reward</h2>
             <p>
               {stakeInfo && ethers.utils.formatEther(stakeInfo[1].toString())}
             </p>
-          </div>
+          </a>
         </div>
       </main>
     </div>
